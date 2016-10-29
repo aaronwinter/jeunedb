@@ -4,16 +4,16 @@ import "bytes"
 import "fmt"
 import "sync"
 
-import Log "jeunedb/tx/log.go"
-import Cache "jeunedb/cache/cache.go"
+import Log "jeunedb/tx"
+import Cache "jeunedb/cache"
 
 type Config struct {
 	BasePath string
 }
 
 type JeuneDB struct {
-	Config
 	lock sync.RWMutex
+	Config
 	Cache
 	Log
 }
