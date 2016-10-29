@@ -18,9 +18,9 @@ type JeuneDB struct {
 	Log
 }
 
-func Create(c Config) *JeuneDB {
-	cache := Cache.Create()
-	log := Log.Create()
+func New(c Config) *JeuneDB {
+	cache := Cache.New()
+	log := Log.New()
 
 	db := &JeuneDB{
 		Config: c,
