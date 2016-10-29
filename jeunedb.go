@@ -4,23 +4,28 @@ import "bytes"
 import "fmt"
 import "sync"
 
+import Log "jeunedb/tx/log.go"
+import Cache "jeunedb/cache/cache.go"
+
 type Config struct {
-	BasePath     string
-	CacheSizeMax uint64
+	BasePath string
 }
 
 type JeuneDB struct {
 	Config
-	lock      sync.RWMutex
-	cache     map[string][]byte
-	cacheSize uint64
+	lock sync.RWMutex
+	Cache
+	Log
 }
 
 func Create(c Config) *JeuneDB {
+	cache := Cache.Create()
+	log := Log.Create()
+
 	db := &JeuneDB{
-		Config:    c,
-		cache:     map[string][]byte{},
-		cacheSize: 0,
+		Config: c,
+		Cache:  cache,
+		Log:    log,
 	}
 	return db
 }
