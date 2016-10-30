@@ -4,8 +4,9 @@ import "bytes"
 import "fmt"
 import "sync"
 
-import Log "jeunedb/tx"
+import Log "jeunedb/log"
 import Cache "jeunedb/cache"
+import Table "jeunedb/table"
 
 type Config struct {
 	BasePath string
@@ -14,13 +15,13 @@ type Config struct {
 type JeuneDB struct {
 	lock sync.RWMutex
 	Config
-	Cache
-	Log
+	Cache.Cache
+	Log.Log
 }
 
 func New(c Config) *JeuneDB {
 	cache := Cache.New()
-	log := Log.New()
+	log := Log.New(c.BasePath, "log_")
 
 	db := &JeuneDB{
 		Config: c,
