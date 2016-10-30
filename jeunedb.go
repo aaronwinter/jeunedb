@@ -7,6 +7,7 @@ import "sync"
 import Log "jeunedb/log"
 import Cache "jeunedb/cache"
 import Table "jeunedb/table"
+import Tx "jeunedb/tx"
 
 type Config struct {
 	BasePath string
@@ -29,4 +30,9 @@ func New(c Config) *JeuneDB {
 		Log:    log,
 	}
 	return db
+}
+
+func WriteBatch() *Tx.Transaction {
+	tx := Tx.New()
+	return &tx
 }
