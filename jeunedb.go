@@ -77,4 +77,11 @@ func (db *JeuneDB) _Snapshot() ([]byte, error) {
 	return make([]byte, 0), nil
 }
 
+
+func (db *JeuneDB) Commit(t *Tx.Transaction) ([]byte, error) {
+	t.Status = "processing"
+	db.mutex.Lock()
+	defer db.mutex.Unlock()
+	t.Status = "success"
+	return make([]byte, 0), nil
 }
