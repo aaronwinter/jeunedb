@@ -19,6 +19,8 @@ var invalidCommand error = errors.New("Invalid command")
 
 type Config struct {
 	BasePath string
+	permDir  os.FileMode
+	permFile os.FileMode
 }
 
 type JeuneDB struct {
