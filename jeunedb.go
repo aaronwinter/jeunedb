@@ -1,12 +1,18 @@
 package jeunedb
 
-import "bytes"
-import "fmt"
+//import "io"
+//import Error "jeunedb/errors"
+//import Table "jeunedb/table"
+//import "fmt"
 import "sync"
+import "errors"
+import "os"
+import "bytes"
+import "io/ioutil"
+import "encoding/binary"
 
 import Log "jeunedb/log"
 import Cache "jeunedb/cache"
-import Table "jeunedb/table"
 import Tx "jeunedb/tx"
 
 type Config struct {
