@@ -47,6 +47,13 @@ func toUint32(buff []byte) uint32 {
 	return binary.BigEndian.Uint32(buff)
 }
 
+func parseHalfBlock(r *bufio.Reader) (uint32, []byte) {
+	buffSize := fillBuffer(4, r)
+	sizeEntry := toUint32(buffSize)
+	bufferEntry := fillBuffer(sizeEntry, r)
+	return sizeEntry, bufferEntry
+}
+
 func FetchBlockWithKey(targetKey []byte, reader *bufio.Reader) (*Block, error) {
 	currentKey := make([]byte, 0)
 	for bytes.Equal(targetKey, currentKey) == false {
