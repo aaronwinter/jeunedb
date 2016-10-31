@@ -1,5 +1,6 @@
 package storage
 
+import "bytes"
 type Block struct {
 	Key    []byte
 	KeyL   uint32
