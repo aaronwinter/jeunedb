@@ -33,3 +33,12 @@ func (b *Block) Serialize() *bytes.Buffer {
 	binary.Write(toBuffer, binary.BigEndian, b.Value)
 	return toBuffer
 }
+
+func fillBuffer(size uint32, r *bufio.Reader) []byte {
+	buff := make([]byte, size)
+	_, err := r.Read(buff)
+	if err != nil {
+		fmt.Println("Error: ", err) // To replace w/ proper error handling
+	}
+	return buff
+}
