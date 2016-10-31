@@ -69,4 +69,12 @@ func (db *JeuneDB) Get(key []byte) ([]byte, error) {
 	return res, err
 }
 
+func (db *JeuneDB) _Get(key []byte) ([]byte, error) {
+	return make([]byte, 0), nil
+}
+
+func (db *JeuneDB) _Snapshot() ([]byte, error) {
+	return make([]byte, 0), nil
+}
+
 }
