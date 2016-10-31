@@ -16,6 +16,21 @@ type Transaction struct {
 	Journal
 }
 
+type Queue struct {
+	queue map[uint32]Transaction
+	size  uint32
+}
+
+func (q *Queue) push(tx *Transaction) {
+	q.queue[q.size] = *tx
+	q.size = q.size + 1
+}
+
+func (q *Queue) pop() {
+	delete(q.queue, q.size)
+	q.size = q.size - 1
+}
+
 
 func New() *Transaction {
 	t := &Transaction{
