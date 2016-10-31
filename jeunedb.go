@@ -70,11 +70,16 @@ func (db *JeuneDB) Get(key []byte) ([]byte, error) {
 	return res, err
 }
 
-func (db *JeuneDB) _Put(key []byte, value []byte) ([]byte, error) {
-	k_length := uint16(len(key) * 8)
-	v_length := uint16(len(value) * 8)
-	buffer := build_buffer(k_length, key, v_length, value)
-	ioutil.WriteFile(db.Config.BasePath, buffer.Bytes(), db.Config.permFile)
+func (db *JeuneDB) _Put(block *Storage.Block) ([]byte, error) {
+	buffWrite := block.Serialize()
+	f, err := os.OpenFile(db.Config.BasePath, osWriteFlag, db.Config.permFile)
+	defer f.Close()
+	if err != nil {
+		fmt.Println("Error: ", err) // to replace w/ proper error handling
+	}
+	writer := bufio.NewWriter(f)
+	writer.Write(buffWrite.Bytes())
+	writer.Flush()
 	return make([]byte, 0), nil
 }
 
