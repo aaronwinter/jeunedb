@@ -1,15 +1,13 @@
 package jeunedb
 
-//import "io"
 //import Error "jeunedb/errors"
 //import Table "jeunedb/table"
-//import "fmt"
+//import "io"
+import "fmt"
 import "sync"
 import "errors"
 import "os"
-import "bytes"
-import "io/ioutil"
-import "encoding/binary"
+import "bufio"
 
 import Log "jeunedb/log"
 import Cache "jeunedb/cache"
