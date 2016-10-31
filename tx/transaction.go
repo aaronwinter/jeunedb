@@ -16,11 +16,13 @@ type Transaction struct {
 	Journal
 }
 
-func New() Transaction {
-	t := Transaction{
-		operations: make(map[uint16][]Operation),
-		status:     "init",
-		Journal:    Journal{},
+
+func New() *Transaction {
+	t := &Transaction{
+		OpSeq:   make(map[uint32]Operation),
+		numOps:  0,
+		Status:  "init",
+		Journal: Journal{},
 	}
 	return t
 }
