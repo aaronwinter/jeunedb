@@ -61,4 +61,12 @@ func (db *JeuneDB) Put(key []byte, value []byte) error {
 	_, err := db.Commit(tx)
 	return err
 }
+
+func (db *JeuneDB) Get(key []byte) ([]byte, error) {
+	tx := Tx.New()
+	tx.Get(key)
+	res, err := db.Commit(tx)
+	return res, err
+}
+
 }
