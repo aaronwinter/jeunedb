@@ -69,6 +69,15 @@ func (db *JeuneDB) Get(key []byte) ([]byte, error) {
 	return res, err
 }
 
+func build_buffer(k_len uint16, k []byte, v_len uint16, v []byte) *bytes.Buffer {
+	buffer := new(bytes.Buffer)
+	buffer.Reset()
+	binary.Write(buffer, binary.LittleEndian, k_len)
+	binary.Write(buffer, binary.LittleEndian, k)
+	binary.Write(buffer, binary.LittleEndian, v_len)
+	binary.Write(buffer, binary.LittleEndian, v)
+	return buffer
+}
 
 func (db *JeuneDB) _Put(key []byte, value []byte) ([]byte, error) {
 	k_length := uint16(len(key) * 8)
