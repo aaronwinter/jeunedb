@@ -15,6 +15,8 @@ import Log "jeunedb/log"
 import Cache "jeunedb/cache"
 import Tx "jeunedb/tx"
 
+var invalidCommand error = errors.New("Invalid command")
+
 type Config struct {
 	BasePath string
 }
