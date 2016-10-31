@@ -100,7 +100,8 @@ func (db *JeuneDB) _Exec(o Tx.Operation) ([]byte, error) {
 	case "GET":
 		return db._Get(o.Key)
 	case "PUT":
-		return db._Put(o.Key, o.Value)
+		b := Storage.NewBlock(o.Key, o.Value)
+		return db._Put(b)
 	case "SNAPSHOT":
 		return db._Snapshot()
 	default:
