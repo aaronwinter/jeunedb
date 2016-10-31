@@ -71,6 +71,11 @@ func (db *JeuneDB) Get(key []byte) ([]byte, error) {
 
 
 func (db *JeuneDB) _Put(key []byte, value []byte) ([]byte, error) {
+	k_length := uint16(len(key) * 8)
+	v_length := uint16(len(value) * 8)
+	buffer := build_buffer(k_length, key, v_length, value)
+	ioutil.WriteFile(db.Config.BasePath, buffer.Bytes(), db.Config.permFile)
+	return make([]byte, 0), nil
 }
 
 func (db *JeuneDB) _Get(key []byte) ([]byte, error) {
