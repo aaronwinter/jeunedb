@@ -77,6 +77,18 @@ func (db *JeuneDB) _Snapshot() ([]byte, error) {
 	return make([]byte, 0), nil
 }
 
+func (db *JeuneDB) _Exec(o Tx.Operation) ([]byte, error) {
+	switch o.Cmd {
+	case "GET":
+		return db._Get(o.Key)
+	case "PUT":
+		return db._Put(o.Key, o.Value)
+	case "SNAPSHOT":
+		return db._Snapshot()
+	default:
+		return make([]byte, 0), invalidCommand
+	}
+}
 
 func (db *JeuneDB) Commit(t *Tx.Transaction) ([]byte, error) {
 	t.Status = "processing"
