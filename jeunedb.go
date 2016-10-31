@@ -27,6 +27,7 @@ type JeuneDB struct {
 	mutex sync.RWMutex
 	Config
 	Cache.Cache
+	Tx.Queue
 	Log.Log
 }
 
