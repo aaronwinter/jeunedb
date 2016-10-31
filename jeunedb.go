@@ -38,7 +38,7 @@ func New(c Config) *JeuneDB {
 	}
 
 	if c.permFile <= 0 || c.permFile > 777 {
-		c.permFile = 777
+		c.permFile = 0777
 	}
 
 	if c.BasePath == "" {
