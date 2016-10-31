@@ -69,6 +69,10 @@ func (db *JeuneDB) Get(key []byte) ([]byte, error) {
 	return res, err
 }
 
+
+func (db *JeuneDB) _Put(key []byte, value []byte) ([]byte, error) {
+}
+
 func (db *JeuneDB) _Get(key []byte) ([]byte, error) {
 	return make([]byte, 0), nil
 }
