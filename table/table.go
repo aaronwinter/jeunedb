@@ -1,7 +1,10 @@
 package table
 
 type Entry struct {
-	size uint64
+	key    []byte
+	value  []byte
+	size   uint64
+	offset uint16
 }
 
 type Table struct {
