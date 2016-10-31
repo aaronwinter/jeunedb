@@ -32,6 +32,18 @@ type JeuneDB struct {
 }
 
 func New(c Config) *JeuneDB {
+	if c.permDir <= 0 || c.permDir > 777 {
+		c.permDir = 744
+	}
+
+	if c.permFile <= 0 || c.permFile > 777 {
+		c.permFile = 777
+	}
+
+	if c.BasePath == "" {
+		c.BasePath = "./tmpdb"
+	}
+
 	cache := Cache.New()
 	log := Log.New(c.BasePath, "log_")
 
