@@ -55,7 +55,5 @@ func New(c Config) *JeuneDB {
 	return db
 }
 
-func WriteBatch() *Tx.Transaction {
 	tx := Tx.New()
-	return &tx
 }
