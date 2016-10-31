@@ -18,3 +18,13 @@ func NewBlock(k []byte, v []byte) *Block {
 	}
 	return b
 }
+
+func (b *Block) Serialize() *bytes.Buffer {
+	toBuffer := new(bytes.Buffer)
+	toBuffer.Reset()
+	binary.Write(toBuffer, binary.BigEndian, b.KeyL)
+	binary.Write(toBuffer, binary.BigEndian, b.Key)
+	binary.Write(toBuffer, binary.BigEndian, b.ValueL)
+	binary.Write(toBuffer, binary.BigEndian, b.Value)
+	return toBuffer
+}
