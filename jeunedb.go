@@ -55,5 +55,10 @@ func New(c Config) *JeuneDB {
 	return db
 }
 
+func (db *JeuneDB) Put(key []byte, value []byte) error {
 	tx := Tx.New()
+	tx.Put(key, value)
+	_, err := db.Commit(tx)
+	return err
+}
 }
