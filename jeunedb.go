@@ -15,6 +15,9 @@ import Tx "jeunedb/tx"
 
 var invalidCommand error = errors.New("Invalid command")
 
+const osWriteFlag int = os.O_CREATE | os.O_WRONLY | os.O_APPEND
+const osReadFlag int = os.O_RDONLY
+
 type Config struct {
 	BasePath string
 	permDir  os.FileMode
