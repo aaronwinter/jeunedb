@@ -82,6 +82,10 @@ func (db *JeuneDB) Commit(t *Tx.Transaction) ([]byte, error) {
 	t.Status = "processing"
 	db.mutex.Lock()
 	defer db.mutex.Unlock()
+	for _, v := range t.OpSeq {
+		// res, err := db._Exec(v)
+		db._Exec(v)
+	}
 	t.Status = "success"
 	return make([]byte, 0), nil
 }
