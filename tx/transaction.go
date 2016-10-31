@@ -31,6 +31,14 @@ func (q *Queue) pop() {
 	q.size = q.size - 1
 }
 
+func NewOperation(cmd string, k []byte, v []byte) Operation {
+	op := Operation{
+		Key:   k,
+		Value: v,
+		Cmd:   cmd,
+	}
+	return op
+}
 
 func New() *Transaction {
 	t := &Transaction{
