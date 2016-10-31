@@ -1,17 +1,18 @@
 package tx
 
 type Operation struct {
-	key   []byte
-	value []byte
-	cmd   string // cmd := "Get" | "Put" | "Delete" | "Snapshot"
+	Key   []byte
+	Value []byte
+	Cmd   string // cmd := "Get" | "Put" | "Delete" | "Snapshot"
 }
 
 type Journal struct {
 }
 
 type Transaction struct {
-	operations map[uint16][]Operation
-	status     string // status := "init" | "queued" | "processing" | "over"
+	OpSeq  map[uint32]Operation
+	numOps uint32
+	Status string // := "init" | "queued" | "processing "| "success" | "failure"
 	Journal
 }
 
