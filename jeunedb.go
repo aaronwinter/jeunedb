@@ -24,7 +24,7 @@ type Config struct {
 }
 
 type JeuneDB struct {
-	lock sync.RWMutex
+	mutex sync.RWMutex
 	Config
 	Cache.Cache
 	Log.Log
