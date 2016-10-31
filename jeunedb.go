@@ -88,7 +88,19 @@ func (db *JeuneDB) _Put(key []byte, value []byte) ([]byte, error) {
 }
 
 func (db *JeuneDB) _Get(key []byte) ([]byte, error) {
-	return make([]byte, 0), nil
+	fmt.Println("_Get")
+	// Todo: Bloom filter
+	f, _ := os.OpenFile(db.Config.BasePath, osReadFlag, db.Config.permFile)
+	defer f.Close()
+	reader := bufio.NewReader(f)
+	entry, err := Storage.FetchBlockWithKey(key, reader)
+	if err != nil {
+		return make([]byte, 0), err
+	} else {
+		fmt.Println("Found key = ", key)
+		fmt.Println("Key -value->", entry.Value)
+		return entry.Value, nil
+	}
 }
 
 func (db *JeuneDB) _Snapshot() ([]byte, error) {
