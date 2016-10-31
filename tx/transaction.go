@@ -49,3 +49,18 @@ func New() *Transaction {
 	}
 	return t
 }
+
+func (t *Transaction) _AddOperation(cmd string, key []byte, argV ...[]byte) {
+	value := argV[0]
+	op := NewOperation(cmd, key, value)
+	t.OpSeq[t.numOps+1] = op
+	t.numOps = t.numOps + 1
+}
+
+func (t *Transaction) Put(key []byte, value []byte) {
+	t._AddOperation("PUT", key, value)
+}
+
+func (t *Transaction) Get(key []byte) {
+	t._AddOperation("GET", key)
+}
