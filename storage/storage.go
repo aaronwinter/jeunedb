@@ -1,6 +1,10 @@
 package storage
 
+import "bufio"
 import "bytes"
+import "fmt"
+import "encoding/binary"
+
 type Block struct {
 	Key    []byte
 	KeyL   uint32
