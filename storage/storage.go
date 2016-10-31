@@ -46,3 +46,20 @@ func fillBuffer(size uint32, r *bufio.Reader) []byte {
 func toUint32(buff []byte) uint32 {
 	return binary.BigEndian.Uint32(buff)
 }
+
+func FetchBlockWithKey(targetKey []byte, reader *bufio.Reader) (*Block, error) {
+	currentKey := make([]byte, 0)
+	for bytes.Equal(targetKey, currentKey) == false {
+		byteSizeKey, currentKey := parseHalfBlock(reader)
+		byteSizeVal, currentVal := parseHalfBlock(reader)
+		if bytes.Equal(targetKey, currentKey) == true {
+			return &Block{
+				Key:    currentKey,
+				KeyL:   byteSizeKey,
+				Value:  currentVal,
+				ValueL: byteSizeVal,
+			}, nil
+		}
+	}
+	return nil, nil // to replace with errKeyNotFound
+}
