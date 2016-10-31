@@ -12,6 +12,7 @@ import "bufio"
 import Log "jeunedb/log"
 import Cache "jeunedb/cache"
 import Tx "jeunedb/tx"
+import Storage "jeunedb/storage"
 
 var invalidCommand error = errors.New("Invalid command")
 
