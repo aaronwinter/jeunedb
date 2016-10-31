@@ -42,3 +42,7 @@ func fillBuffer(size uint32, r *bufio.Reader) []byte {
 	}
 	return buff
 }
+
+func toUint32(buff []byte) uint32 {
+	return binary.BigEndian.Uint32(buff)
+}
